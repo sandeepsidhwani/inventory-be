@@ -1,0 +1,30 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.log
+
+# Temporary files
+.DS_Store
+.env
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.bak
+*.swo
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# Misc
+.cache/
+.nyc_output/
+.temp/
