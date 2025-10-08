@@ -20,7 +20,7 @@
 const { Sequelize } = require('sequelize');
 
 // Initialize Sequelize
-const sequelize = new Sequelize('inventory_management', 'root', 'admin', {
+const sequelize = new Sequelize('inventory_sidhtech', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
 });
