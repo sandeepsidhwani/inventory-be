@@ -11,10 +11,36 @@ const ItemGroupController = {
 
       const imagePath = `/uploads/${req.file.filename}`;
 
+      // Extract all required fields from request body
+      const { type, item_group_name, description, unit, manufacturer, brand } =
+        req.body;
+
+      // Validate required fields
+      if (
+        !type ||
+        !item_group_name ||
+        !description ||
+        !unit ||
+        !manufacturer ||
+        !brand
+      ) {
+        // Clean up uploaded file if validation fails
+        if (req.file) {
+          const fs = require("fs");
+          fs.unlinkSync(req.file.path);
+        }
+        return res.status(400).json({ error: "All fields are required" });
+      }
+
       const group = await ItemGroup.create({
-        ...req.body,
+        type,
+        item_group_name,
+        description,
+        unit,
+        manufacturer,
+        brand,
         image: imagePath,
-        user_id: req.user.id, // Changed from req.userId to req.user.id
+        user_id: req.user.id,
       });
 
       res.status(201).json({
@@ -30,7 +56,9 @@ const ItemGroupController = {
         fs.unlinkSync(req.file.path);
       }
 
-      res.status(500).json({ error: "Failed to create item group" });
+      res
+        .status(500)
+        .json({ error: "Failed to create item group: " + err.message });
     }
   },
 
@@ -38,7 +66,7 @@ const ItemGroupController = {
   getAllItemGroups: async (req, res) => {
     try {
       const groups = await ItemGroup.findAll({
-        where: { user_id: req.user.id }, // Changed from req.userId to req.user.id
+        where: { user_id: req.user.id },
         attributes: { exclude: ["createdAt", "updatedAt"] },
       });
       res.json(groups);
@@ -54,7 +82,7 @@ const ItemGroupController = {
 
     try {
       const group = await ItemGroup.findOne({
-        where: { id, user_id: req.user.id }, // Changed from req.userId to req.user.id
+        where: { id, user_id: req.user.id },
         attributes: { exclude: ["createdAt", "updatedAt"] },
       });
       if (!group)
@@ -72,7 +100,7 @@ const ItemGroupController = {
 
     try {
       const group = await ItemGroup.findOne({
-        where: { id, user_id: req.user.id }, // Changed from req.userId to req.user.id
+        where: { id, user_id: req.user.id },
       });
 
       if (!group) {
@@ -124,7 +152,7 @@ const ItemGroupController = {
 
     try {
       const group = await ItemGroup.findOne({
-        where: { id, user_id: req.user.id }, // Changed from req.userId to req.user.id
+        where: { id, user_id: req.user.id },
       });
 
       if (!group) {
@@ -151,7 +179,7 @@ const ItemGroupController = {
 
     try {
       const group = await ItemGroup.findOne({
-        where: { id, user_id: req.user.id }, // Changed from req.userId to req.user.id
+        where: { id, user_id: req.user.id },
       });
 
       if (!group) {

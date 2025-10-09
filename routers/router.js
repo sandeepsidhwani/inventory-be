@@ -28,7 +28,7 @@ const BillPaymentController = require('../controllers/admin/BillPaymentControlle
 const VendorAdvanceController = require('../controllers/admin/VendorAdvanceController');
 const VendorCreditController = require('../controllers/admin/VendorCreditController');
 
-// Auth routes
+// Auth routes ✅
 router.post('/register', AuthController.register);
 router.post('/login', AuthController.login);
 router.get('/user', authenticateToken, AuthController.getUser);
@@ -48,12 +48,12 @@ router.get('/composite-items/:id', authenticateToken, CompositeItemController.ge
 router.put('/composite-items/:id', authenticateToken, CompositeItemController.updateCompositeItem);
 router.delete('/composite-items/:id', authenticateToken, CompositeItemController.deleteCompositeItem);
 
-// Item Groups routes
-router.post('/item-groups', authenticateToken, upload.single('imageFile'), ItemGroupController.createItemGroup);
+// Item Groups routes ✅
+router.post('/item-groups', authenticateToken, upload.single('image'), ItemGroupController.createItemGroup);
 router.get('/item-groups', authenticateToken, ItemGroupController.getAllItemGroups);
 router.get('/item-groups/:id', authenticateToken, ItemGroupController.getItemGroupById);
 router.put('/item-groups/:id', authenticateToken, ItemGroupController.updateItemGroup);
-router.put('/item-groups/:id/image', authenticateToken, upload.single('imageFile'), ItemGroupController.updateItemGroupWithImage);
+router.put('/item-groups/:id/image', authenticateToken, upload.single('image'), ItemGroupController.updateItemGroupWithImage);
 router.delete('/item-groups/:id', authenticateToken, ItemGroupController.deleteItemGroup);
 
 // PriceList routes ✅
@@ -147,49 +147,49 @@ router.get('/retainer-invoices/:id', authenticateToken, RetainerInvoiceControlle
 router.put('/retainer-invoices/:id', authenticateToken, RetainerInvoiceController.updateRetainerInvoice);
 router.delete('/retainer-invoices/:id', authenticateToken, RetainerInvoiceController.deleteRetainerInvoice);
 
-// Sales Order routes
+// Sales Order routes ✅
 router.post('/sales-orders', authenticateToken, SalesOrderController.createSalesOrder);
 router.get('/sales-orders', authenticateToken, SalesOrderController.getAllSalesOrders);
 router.get('/sales-orders/:id', authenticateToken, SalesOrderController.getSalesOrderById);
 router.put('/sales-orders/:id', authenticateToken, SalesOrderController.updateSalesOrder);
 router.delete('/sales-orders/:id', authenticateToken, SalesOrderController.deleteSalesOrder);
 
-// Credit Note routes
+// Credit Note routes ✅
 router.post('/credit-notes', authenticateToken, CreditNoteController.createCreditNote);
 router.get('/credit-notes', authenticateToken, CreditNoteController.getAllCreditNotes);
 router.get('/credit-notes/:id', authenticateToken, CreditNoteController.getCreditNoteById);
 router.put('/credit-notes/:id', authenticateToken, CreditNoteController.updateCreditNote);
 router.delete('/credit-notes/:id', authenticateToken, CreditNoteController.deleteCreditNote);
 
-// Vendor routes
+// Vendor routes ✅
 router.post('/vendors', authenticateToken, VendorController.createVendor);
 router.get('/vendors', authenticateToken, VendorController.getAllVendors);
 router.get('/vendors/:id', authenticateToken, VendorController.getVendorById);
 router.put('/vendors/:id', authenticateToken, VendorController.updateVendor);
 router.delete('/vendors/:id', authenticateToken, VendorController.deleteVendor);
 
-// Purchase Order routes
+// Purchase Order routes ✅
 router.post('/purchase-orders', authenticateToken, PurchaseOrderController.createPurchaseOrder);
 router.get('/purchase-orders', authenticateToken, PurchaseOrderController.getAllPurchaseOrders);
 router.get('/purchase-orders/:id', authenticateToken, PurchaseOrderController.getPurchaseOrderById);
 router.put('/purchase-orders/:id', authenticateToken, PurchaseOrderController.updatePurchaseOrder);
 router.delete('/purchase-orders/:id', authenticateToken, PurchaseOrderController.deletePurchaseOrder);
 
-// Bill Payment routes
+// Bill Payment routes ✅
 router.post('/bill-payments', authenticateToken, BillPaymentController.createBillPayment);
 router.get('/bill-payments', authenticateToken, BillPaymentController.getAllBillPayments);
 router.get('/bill-payments/:id', authenticateToken, BillPaymentController.getBillPaymentById);
 router.put('/bill-payments/:id', authenticateToken, BillPaymentController.updateBillPayment);
 router.delete('/bill-payments/:id', authenticateToken, BillPaymentController.deleteBillPayment);
 
-// Vendor Advance routes
+// Vendor Advance routes ✅
 router.post('/vendor-advances', authenticateToken, VendorAdvanceController.createVendorAdvance);
 router.get('/vendor-advances', authenticateToken, VendorAdvanceController.getAllVendorAdvances);
 router.get('/vendor-advances/:id', authenticateToken, VendorAdvanceController.getVendorAdvanceById);
 router.put('/vendor-advances/:id', authenticateToken, VendorAdvanceController.updateVendorAdvance);
 router.delete('/vendor-advances/:id', authenticateToken, VendorAdvanceController.deleteVendorAdvance);
 
-// Vendor Credit routes
+// Vendor Credit routes ✅
 router.post('/vendor-credits', authenticateToken, VendorCreditController.createVendorCredit);
 router.get('/vendor-credits', authenticateToken, VendorCreditController.getAllVendorCredits);
 router.get('/vendor-credits/:id', authenticateToken, VendorCreditController.getVendorCreditById);

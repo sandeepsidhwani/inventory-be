@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ItemGroup extends Model {
     /**
@@ -10,22 +8,53 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      ItemGroup.belongsTo(models.User, {
+        foreignKey: "user_id",
+        as: "user",
+      });
     }
   }
-  ItemGroup.init({
-    type: DataTypes.STRING,
-    item_group_name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    unit: DataTypes.STRING,
-    manufacturer: DataTypes.STRING,
-    brand: DataTypes.STRING,
-    image: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'ItemGroup',
-    tableName: 'item_groups',
-  });
+  // In your ItemGroup model
+  ItemGroup.init(
+    {
+      type: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      item_group_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      unit: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      manufacturer: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      brand: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "ItemGroup",
+      tableName: "item_groups",
+    }
+  );
   return ItemGroup;
 };
